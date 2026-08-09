@@ -33,9 +33,19 @@ jobs:
           rm commandlinetools-linux-9477386_latest.zip
           mkdir -p cmdline-tools/latest
           mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || true
-          export ANDROID_SDK_ROOT=~/Android/Sdk
-          export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
-          yes | sdkmanager --licenses || true
+
+      - name: Accept Android licenses
+        run: |
+          mkdir -p ~/Android/Sdk/licenses
+          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > ~/Android/Sdk/licenses/android-sdk-license
+          echo "84831b9409646a918e30573bab4c9c91346d8abd" > ~/Android/Sdk/licenses/android-sdk-preview-license
+          echo "d56f5187479451eabf01fb78af6dfcb131b33910" > ~/Android/Sdk/licenses/google-android-sdk-license
+
+      - name: Install Android packages
+        env:
+          ANDROID_SDK_ROOT: ~/Android/Sdk
+          PATH: ~/Android/Sdk/cmdline-tools/latest/bin:$PATH
+        run: |
           sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
 
       - name: Install system dependencies
