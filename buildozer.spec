@@ -14,6 +14,7 @@ android.minapi = 23
 android.archs = arm64-v8a, armeabi-v7a
 android.allow_backup = True
 android.copy_libs = 1
+android.accept_sdk_license = True
 p4a.bootstrap = sdl2
 
 [buildozer]
