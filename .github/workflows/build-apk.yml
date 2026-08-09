@@ -18,17 +18,17 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Java
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Android SDK
+      - name: Accept Android SDK licenses
         run: |
-          sudo apt-get update
-          sudo apt-get install -y android-sdk android-sdk-platform-tools-common
-          sudo apt-get install -y android-sdk-build-tools
+          mkdir -p $ANDROID_SDK_ROOT/licenses
+          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_SDK_ROOT/licenses/android-sdk-license
+          echo "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_SDK_ROOT/licenses/android-sdk-preview-license
 
       - name: Install Python dependencies
         run: |
