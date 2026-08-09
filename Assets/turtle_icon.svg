@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="110" fill="#111a24"/>
+<circle cx="245" cy="275" r="135" fill="#00ff66"/>
+<circle cx="360" cy="225" r="62" fill="#d9ffd9"/>
+<circle cx="382" cy="210" r="10" fill="#111a24"/>
+<path d="M135 170 Q80 120 110 85 Q165 105 190 155" fill="#00ff66"/>
+<path d="M125 365 Q75 405 105 445 Q160 425 185 385" fill="#00ff66"/>
+<path d="M310 390 Q350 440 395 405 Q390 360 345 345" fill="#00ff66"/>
+<path d="M165 215 Q245 155 325 215 M155 280 Q245 225 335 280 M165 345 Q245 295 325 345" fill="none" stroke="#111a24" stroke-width="18" opacity=".65"/>
+<text x="256" y="480" text-anchor="middle" font-family="sans-serif" font-size="38" font-weight="bold" fill="#00fbff">TURTLE</text>
+</svg>
