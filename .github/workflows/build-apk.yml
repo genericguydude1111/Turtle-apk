@@ -9,15 +9,36 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: kivy/kivy:latest
 
     steps:
       - uses: actions/checkout@v7
 
-      - name: Install buildozer
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
         run: |
-          pip install buildozer cython
+          sudo apt-get update
+          sudo apt-get install -y build-essential libssl-dev libffi-dev python3-dev
+          sudo apt-get install -y openjdk-11-jdk
+          sudo apt-get install -y android-sdk
+
+      - name: Set up Android environment
+        run: |
+          export ANDROID_SDK_ROOT=/usr/lib/android-sdk
+          export PATH=$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools
+          yes | sudo $ANDROID_SDK_ROOT/tools/bin/sdkmanager --licenses || true
+
+      - name: Install Buildozer and Cython
+        run: |
+          pip install --upgrade pip
+          pip install cython buildozer
+
+      - name: Configure Buildozer
+        run: |
+          mkdir -p ~/.buildozer/android/platform/build-*/
 
       - name: Build APK
         run: |
